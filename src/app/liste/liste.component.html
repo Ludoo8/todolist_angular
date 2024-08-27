@@ -1,0 +1,32 @@
+<input [(ngModel)]="nouvelleTache" placeholder="Nouvelle tâche" />
+<div class="btn" (click)="onClicAjouterTache()">Ajouter</div>
+
+
+
+<div class="liste-taches">
+  <div *ngFor="let tache of taches; let indexTache = index" class="tache" [class.accomplie]="tache.accomplie">
+    <div class="en-tete">
+      <p>{{ tache.todo }}</p>
+    </div>
+    <div class="actions">
+      <!-- accomplie -->/
+      <button class="btn accomplie" (click)="onClicAccomplie(indexTache)">
+        ✓
+      </button>
+
+      <!-- monter tâche -->
+      <button class="btn plus" *ngIf="indexTache > 0" (click)="onClicChangementTache(indexTache, false)">
+        ↑
+      </button>
+      <!-- descendre tâche -->
+      <button class="btn moins" *ngIf="indexTache < taches.length - 1" (click)="onClicChangementTache(indexTache, true)">
+        ↓
+      </button>
+
+      <!-- suppr tâche -->
+      <button class="btn supprime" (click)="onClicSupprime(indexTache)">
+        x
+      </button>
+    </div>
+  </div>
+</div>
